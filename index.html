@@ -1,269 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Parley Chat — End-to-end encrypted messaging. Hybrid AES-GCM + RSA-OAEP encryption, forward secrecy, peer-to-peer video calls, group channels. Free and open source.">
-<meta name="robots" content="index, follow">
-<title>Parley Chat — E2EE Messaging Platform</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
---bg: #2c2c2a;
---bg2: #383836;
---bg3: #454542;
---bg4: #505050;
---text: #dedede;
---text2: #a0a09a;
---text3: #707068;
---green: #5baa52;
---green2: #3d7a36;
---green-bg: rgba(91,170,82,0.12);
---border: rgba(255,255,255,0.07);
---r: 0.5rem;
---r2: 1rem;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: "Lexend", "Arial", sans-serif; line-height: 1.55; overflow-x: hidden; font-weight: 400; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 54px; }
-.nav-logo { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
-.nav-logo-icon { width: 28px; height: 28px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; }
-.nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
-.nav-links { display: flex; gap: 0.25rem; list-style: none; }
-.nav-links a { color: var(--text2); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 0.4rem 0.9rem; border-radius: var(--r); transition: background 0.2s, color 0.2s; }
-.nav-links a:hover { background: var(--bg2); color: var(--text); }
-.nav-cta { background: var(--green); color: #fff; padding: 0.45rem 1.2rem; border-radius: var(--r); font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
-.nav-cta:hover { background: var(--green2); }
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; padding: 6rem 3rem 3rem; max-width: 1200px; margin: 0 auto; }
-.hero-text { }
-.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-bg); color: var(--green); border: 1px solid rgba(91,170,82,0.25); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 2rem; }
-.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-.hero-headline { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); }
-.hero-headline .hl { color: var(--green); }
-.hero-sub { font-size: 1rem; color: var(--text2); margin-top: 1.5rem; line-height: 1.7; font-weight: 300; max-width: 440px; }
-.hero-actions { display: flex; gap: 0.75rem; margin-top: 2.5rem; flex-wrap: wrap; }
-.btn-primary { background: var(--green); color: #fff; padding: 0.75rem 1.8rem; border-radius: var(--r); font-family: "Lexend", sans-serif; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
-.btn-primary:hover { background: var(--green2); }
-.btn-secondary { background: var(--bg2); color: var(--text); padding: 0.75rem 1.8rem; border-radius: var(--r); font-family: "Lexend", sans-serif; font-size: 0.88rem; font-weight: 500; text-decoration: none; border: 1px solid var(--border); transition: background 0.2s; white-space: nowrap; }
-.btn-secondary:hover { background: var(--bg3); }
-.hero-visual { background: var(--bg2); border-radius: var(--r2); border: 1px solid var(--border); overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
-.hero-visual img { width: 100%; height: auto; display: block; }
-.features { padding: 5rem 3rem; border-top: 1px solid var(--border); }
-.section-header { margin-bottom: 3rem; }
-.section-eyebrow { font-size: 0.72rem; font-weight: 600; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
-.section-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: var(--r2); overflow: hidden; }
-.feat-card { background: var(--bg2); padding: 1.75rem; transition: background 0.2s; }
-.feat-card:hover { background: var(--bg3); }
-.feat-icon { width: 36px; height: 36px; background: var(--bg3); border-radius: var(--r); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1rem; }
-.feat-card:hover .feat-icon { background: var(--bg4); }
-.feat-title { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-.feat-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.65; font-weight: 300; }
-.security { padding: 5rem 3rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; max-width: 1200px; margin: 0 auto; }
-.sec-eyebrow { font-size: 0.72rem; font-weight: 600; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
-.sec-headline { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.5rem; }
-.sec-headline .hl { color: var(--green); }
-.sec-list { list-style: none; }
-.sec-list li { font-size: 0.85rem; color: var(--text2); padding: 0.8rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.9rem; line-height: 1.5; font-weight: 300; }
-.sec-list li:last-child { border-bottom: none; }
-.sec-list-icon { width: 18px; height: 18px; background: var(--green-bg); border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-.sec-list-icon::after { content: "✓"; font-size: 0.6rem; color: var(--green); font-weight: 700; }
-.sec-content p { font-size: 0.88rem; color: var(--text2); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 300; }
-.sec-detail-box { background: var(--bg2); border-radius: var(--r2); padding: 1.5rem; border: 1px solid var(--border); margin-top: 2rem; }
-.sec-detail-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
-.sec-detail-row:last-child { border-bottom: none; }
-.sec-detail-k { font-size: 0.75rem; color: var(--text2); font-weight: 500; }
-.sec-detail-v { font-size: 0.75rem; color: var(--green); font-weight: 600; background: var(--green-bg); padding: 0.15rem 0.5rem; border-radius: 999px; }
-.cta-section { padding: 5rem 3rem; border-top: 1px solid var(--border); }
-.cta-inner { background: var(--bg2); border-radius: var(--r2); padding: 4rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; border: 1px solid var(--border); flex-wrap: wrap; }
-.cta-headline { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; }
-.cta-headline .hl { color: var(--green); }
-.cta-right { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
-.cta-sub { font-size: 0.85rem; color: var(--text2); max-width: 280px; line-height: 1.65; font-weight: 300; }
-footer { border-top: 1px solid var(--border); padding: 1.75rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-.footer-logo { font-size: 0.88rem; font-weight: 700; color: var(--text); text-decoration: none; }
-.footer-copy { font-size: 0.75rem; color: var(--text3); font-weight: 400; }
-.footer-links { display: flex; gap: 0.25rem; list-style: none; }
-.footer-links a { color: var(--text2); text-decoration: none; font-size: 0.78rem; font-weight: 500; padding: 0.3rem 0.75rem; border-radius: var(--r); transition: background 0.2s, color 0.2s; }
-.footer-links a:hover { background: var(--bg2); color: var(--text); }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.hero-badge { animation: fadeUp 0.6s ease 0.05s both; }
-.hero-headline { animation: fadeUp 0.7s ease 0.15s both; }
-.hero-sub { animation: fadeUp 0.7s ease 0.28s both; }
-.hero-actions { animation: fadeUp 0.7s ease 0.38s both; }
-.hero-visual { animation: fadeUp 0.9s ease 0.2s both; }
-@media (max-width: 960px) {
-.hero { grid-template-columns: 1fr; padding: 5.5rem 1.5rem 3rem; gap: 3rem; }
-.hero-visual { max-width: 500px; }
-.features { padding: 4rem 1.5rem; }
-.features-grid { grid-template-columns: 1fr; }
-.security { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
-.cta-section { padding: 4rem 1.5rem; }
-.cta-inner { flex-direction: column; padding: 2.5rem 2rem; }
-footer { padding: 1.5rem; }
-}
-</style>
-</head>
-<body>
-<nav aria-label="Main navigation">
-<a class="nav-logo" href="https://parley-chat.site">
-<span class="nav-logo-icon">
-<img src="favicon.ico" alt="Parley Chat logo">
-</span>
-Parley Chat
-</a>
-<ul class="nav-links">
-<li><a href="#features">Features</a></li>
-<li><a href="#security">Security</a></li>
-<li><a href="https://docs.parley-chat.site">Documentation</a></li>
-</ul>
-<a class="nav-cta" href="https://parley-chat.site">Open App</a>
-</nav>
-<main>
-<section class="hero" aria-label="Hero section">
-<div class="hero-text">
-<div class="hero-badge">
-<span class="hero-badge-dot" aria-hidden="true"></span>
-End-to-End Encrypted
-</div>
-<h1 class="hero-headline">Private messaging<br>done <span class="hl">right.</span></h1>
-<p class="hero-sub">Hybrid AES-GCM + RSA-OAEP encryption with forward secrecy. Peer-to-peer video calls. Group channels. Multi-server support. Free forever.</p>
-<div class="hero-actions">
-<a class="btn-primary" href="https://parley-chat.site">Start Chatting →</a>
-<a class="btn-secondary" href="#features">See Features</a>
-</div>
-</div>
-<div class="hero-visual">
-<img src="./media/screenshot.png" alt="Parley Chat app interface showing encrypted messaging">
-</div>
-</section>
-<section class="features" id="features" aria-label="Features">
-<div class="section-header">
-<p class="section-eyebrow">Features</p>
-<h2 class="section-title">Everything you need to communicate privately</h2>
-</div>
-<div class="features-grid" role="list">
-<article class="feat-card" role="listitem">
-<div class="feat-icon" aria-hidden="true">🔒</div>
-<h3 class="feat-title">End-to-End Encryption</h3>
-<p class="feat-desc">Hybrid E2EE: RSA-OAEP key exchange and AES-GCM-128 message encryption. Messages signed with RSA-PSS. Ephemeral keys expire hourly — forward secrecy built in.</p>
-</article>
-<article class="feat-card" role="listitem">
-<div class="feat-icon" aria-hidden="true">📹</div>
-<h3 class="feat-title">Peer-to-Peer Video Calls</h3>
-<p class="feat-desc">WebRTC calls that flow directly between users. No relay server intercepts audio or video. Full mic and camera control with fullscreen support.</p>
-</article>
-<article class="feat-card" role="listitem">
-<div class="feat-icon" aria-hidden="true">🌐</div>
-<h3 class="feat-title">Multi-Server Support</h3>
-<p class="feat-desc">Connect to any Parley-compatible server or self-host your own. Switch between servers without losing your encryption keys. Truly decentralized.</p>
-</article>
-<article class="feat-card" role="listitem">
-<div class="feat-icon" aria-hidden="true">👥</div>
-<h3 class="feat-title">Group &amp; Broadcast Channels</h3>
-<p class="feat-desc">Encrypted group and broadcast channels with a full permission system: owner, admin, send, manage. Invite codes for controlled access.</p>
-</article>
-<article class="feat-card" role="listitem">
-<div class="feat-icon" aria-hidden="true">🎙️</div>
-<h3 class="feat-title">Voice Messages &amp; Files</h3>
-<p class="feat-desc">Record and send encrypted voice messages. Share files directly in your conversations. All media handled in one integrated interface.</p>
-</article>
-<article class="feat-card" role="listitem">
-<div class="feat-icon" aria-hidden="true">📱</div>
-<h3 class="feat-title">Installable PWA</h3>
-<p class="feat-desc">Progressive Web App. Installs on any device, no app store required. Multilingual with RTL support. MIT licensed and free forever.</p>
-</article>
-</div>
-</section>
-<section class="security" id="security" aria-label="Security">
-<div>
-<p class="sec-eyebrow">Security Model</p>
-<h2 class="sec-headline">The server sees<br><span class="hl">ciphertext only.</span></h2>
-<ul class="sec-list">
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-RSA-OAEP key exchange — private key never transmitted
-</li>
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-AES-GCM-128 message encryption — server stores only ciphertext
-</li>
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-RSA-PSS message signing — tampering is cryptographically detectable
-</li>
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-Hourly key rotation — forward secrecy limits breach impact
-</li>
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-Encrypted key file backup for account recovery
-</li>
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-Session management — revoke device access at any time
-</li>
-<li>
-<span class="sec-list-icon" aria-hidden="true"></span>
-MIT licensed — read and audit every line of code
-</li>
-</ul>
-</div>
-<div class="sec-content">
-<p>Parley Chat uses hybrid encryption: RSA-OAEP exchanges an ephemeral AES-GCM shared key per channel. Messages are encrypted with that key and signed with RSA-PSS before leaving your device. The server receives and stores only ciphertext.</p>
-<p>Shared keys expire every hour. Even if a key is compromised, only one hour of messages is exposed — forward secrecy limits the impact of any breach to a short window.</p>
-<div class="sec-detail-box" aria-label="Encryption specifications">
-<div class="sec-detail-row">
-<span class="sec-detail-k">Message cipher</span>
-<span class="sec-detail-v">AES-GCM-128</span>
-</div>
-<div class="sec-detail-row">
-<span class="sec-detail-k">Key exchange</span>
-<span class="sec-detail-v">RSA-OAEP</span>
-</div>
-<div class="sec-detail-row">
-<span class="sec-detail-k">Message signing</span>
-<span class="sec-detail-v">RSA-PSS</span>
-</div>
-<div class="sec-detail-row">
-<span class="sec-detail-k">Key modulus</span>
-<span class="sec-detail-v">2048-bit</span>
-</div>
-<div class="sec-detail-row">
-<span class="sec-detail-k">Key lifetime</span>
-<span class="sec-detail-v">1 hour</span>
-</div>
-<div class="sec-detail-row">
-<span class="sec-detail-k">Forward secrecy</span>
-<span class="sec-detail-v">Yes</span>
-</div>
-</div>
-</div>
-</section>
-<section class="cta-section" aria-label="Get started">
-<div class="cta-inner">
-<h2 class="cta-headline">Start chatting<br><span class="hl">privately.</span></h2>
-<div class="cta-right">
-<p class="cta-sub">No phone number required. No ads. No tracking. No data harvesting. Free forever.</p>
-<a class="btn-primary" href="https://parley-chat.site">Open Parley Chat →</a>
-</div>
-</div>
-</section>
-</main>
-<footer>
-<a class="footer-logo" href="https://parley-chat.site">Parley Chat</a>
-<p class="footer-copy">© 2026 Parley Chat · Free and open source</p>
-<ul class="footer-links">
-<li><a href="https://parley-chat.site">App</a></li>
-<li><a href="#features">Features</a></li>
-<li><a href="#security">Security</a></li>
-<li><a href="https://docs.parley-chat.site">Documentation</a></li>
-</ul>
-</footer>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta property="og:locale" content="en">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parley Chat - E2EE Messaging Platform</title>
+    <meta property="og:title" content="Parley Chat - E2EE Messaging Platform">
+    <meta name="twitter:title" content="Parley Chat - E2EE Messaging Platform">
+    <meta name="description" content="Parley, a secure end to end encrypted messaging web app.">
+    <meta property="og:description" content="Parley, a secure end to end encrypted messaging web app.">
+    <meta name="twitter:description" content="Parley, a secure end to end encrypted messaging web app.">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="512x512" href="./media/parley.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="./media/parley.png">
+    <meta property="og:image" content="https://parley-chat.site/favicon.ico">
+    <meta property="og:image:alt" content="Parley Chat Logo">
+    <meta name="twitter:image" content="https://parley-chat.site/favicon.ico">
+    <meta name="theme-color" content="#004400">
+    <link rel="canonical" href="https://parley-chat.site/">
+    <meta property="og:url" content="https://parley-chat.site/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="./sitemap.xml">
+
+    <link rel="stylesheet" href="./media/style.css">
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="https://parley-chat.site">
+        <img src="favicon.ico" width="28" height="28" alt="Parley Chat logo">
+        Parley Chat
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="https://docs.parley-chat.site">Documentation</a></li>
+      </ul>
+      <a class="nav-cta" href="https://parley-chat.site">Open App</a>
+    </nav>
+    <main>
+      <section class="hero" aria-label="Hero section">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="hero-badge-dot" aria-hidden="true"></span>
+            End-to-End Encrypted
+          </div>
+          <h1 class="hero-headline">Private messaging<br>done <span class="hl">right.</span></h1>
+          <p class="hero-sub">Hybrid AES-GCM + RSA-OAEP encryption with forward secrecy. Peer-to-peer video calls. Group
+            channels. Multi-server support. Free forever.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="https://parley-chat.site">Start Chatting →</a>
+            <a class="btn-secondary" href="#features">See Features</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="./media/screenshot.png" alt="Parley Chat app interface showing encrypted messaging">
+        </div>
+      </section>
+      <section class="features" id="features" aria-label="Features">
+        <div class="section-header">
+          <p class="section-eyebrow">Features</p>
+          <h2 class="section-title">Everything you need to communicate privately</h2>
+        </div>
+        <div class="features-grid" role="list">
+          <article class="feat-card" role="listitem">
+            <div class="feat-icon" aria-hidden="true">🔒</div>
+            <h3 class="feat-title">End-to-End Encryption</h3>
+            <p class="feat-desc">Hybrid E2EE: RSA-OAEP key exchange and AES-GCM-128 message encryption. Messages signed
+              with RSA-PSS. Ephemeral keys expire hourly — forward secrecy built in.</p>
+          </article>
+          <article class="feat-card" role="listitem">
+            <div class="feat-icon" aria-hidden="true">📹</div>
+            <h3 class="feat-title">Peer-to-Peer Video Calls</h3>
+            <p class="feat-desc">WebRTC calls that flow directly between users. No relay server intercepts audio or video.
+              Full mic and camera control with fullscreen support.</p>
+          </article>
+          <article class="feat-card" role="listitem">
+            <div class="feat-icon" aria-hidden="true">🌐</div>
+            <h3 class="feat-title">Multi-Server Support</h3>
+            <p class="feat-desc">Connect to any Parley-compatible server or self-host your own. Switch between servers
+              without losing your encryption keys. Truly decentralized.</p>
+          </article>
+          <article class="feat-card" role="listitem">
+            <div class="feat-icon" aria-hidden="true">👥</div>
+            <h3 class="feat-title">Group &amp; Broadcast Channels</h3>
+            <p class="feat-desc">Encrypted group and broadcast channels with a full permission system: owner, admin, send,
+              manage. Invite codes for controlled access.</p>
+          </article>
+          <article class="feat-card" role="listitem">
+            <div class="feat-icon" aria-hidden="true">🎙️</div>
+            <h3 class="feat-title">Voice Messages &amp; Files</h3>
+            <p class="feat-desc">Record and send encrypted voice messages. Share files directly in your conversations. All
+              media handled in one integrated interface.</p>
+          </article>
+          <article class="feat-card" role="listitem">
+            <div class="feat-icon" aria-hidden="true">📱</div>
+            <h3 class="feat-title">Installable PWA</h3>
+            <p class="feat-desc">Progressive Web App. Installs on any device, no app store required. Multilingual with RTL
+              support. MIT licensed and free forever.</p>
+          </article>
+        </div>
+      </section>
+      <section class="security" id="security" aria-label="Security">
+        <div>
+          <p class="sec-eyebrow">Security Model</p>
+          <h2 class="sec-headline">The server sees<br><span class="hl">ciphertext only.</span></h2>
+          <ul class="sec-list">
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              RSA-OAEP key exchange — private key never transmitted
+            </li>
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              AES-GCM-128 message encryption — server stores only ciphertext
+            </li>
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              RSA-PSS message signing — tampering is cryptographically detectable
+            </li>
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              Hourly key rotation — forward secrecy limits breach impact
+            </li>
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              Encrypted key file backup for account recovery
+            </li>
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              Session management — revoke device access at any time
+            </li>
+            <li>
+              <span class="sec-list-icon" aria-hidden="true"></span>
+              MIT licensed — read and audit every line of code
+            </li>
+          </ul>
+        </div>
+        <div class="sec-content">
+          <p>Parley Chat uses hybrid encryption: RSA-OAEP exchanges an ephemeral AES-GCM shared key per channel. Messages
+            are encrypted with that key and signed with RSA-PSS before leaving your device. The server receives and stores
+            only ciphertext.</p>
+          <p>Shared keys expire every hour. Even if a key is compromised, only one hour of messages is exposed — forward
+            secrecy limits the impact of any breach to a short window.</p>
+          <div class="sec-detail-box" aria-label="Encryption specifications">
+            <div class="sec-detail-row">
+              <span class="sec-detail-k">Message cipher</span>
+              <span class="sec-detail-v">AES-GCM-128</span>
+            </div>
+            <div class="sec-detail-row">
+              <span class="sec-detail-k">Key exchange</span>
+              <span class="sec-detail-v">RSA-OAEP</span>
+            </div>
+            <div class="sec-detail-row">
+              <span class="sec-detail-k">Message signing</span>
+              <span class="sec-detail-v">RSA-PSS</span>
+            </div>
+            <div class="sec-detail-row">
+              <span class="sec-detail-k">Key modulus</span>
+              <span class="sec-detail-v">2048-bit</span>
+            </div>
+            <div class="sec-detail-row">
+              <span class="sec-detail-k">Key lifetime</span>
+              <span class="sec-detail-v">1 hour</span>
+            </div>
+            <div class="sec-detail-row">
+              <span class="sec-detail-k">Forward secrecy</span>
+              <span class="sec-detail-v">Yes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cta-section" aria-label="Get started">
+        <div class="cta-inner">
+          <h2 class="cta-headline">Start chatting<br><span class="hl">privately.</span></h2>
+          <div class="cta-right">
+            <p class="cta-sub">No phone number required. No ads. No tracking. No data harvesting. Free forever.</p>
+            <a class="btn-primary" href="https://parley-chat.site">Open Parley Chat →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>© 2026 Parley Chat</footer>
+  </body>
 </html>
