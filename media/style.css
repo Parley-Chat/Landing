@@ -209,18 +209,10 @@ footer {
   }
 }
 
-.hero-headline {
-  animation: fadeUp 0.7s ease 0.15s both;
-}
-.hero-sub {
-  animation: fadeUp 0.7s ease 0.28s both;
-}
-.hero-actions {
-  animation: fadeUp 0.7s ease 0.38s both;
-}
-.hero-visual {
-  animation: fadeUp 0.9s ease 0.2s both;
-}
+.hero-headline { animation: fadeUp 0.7s ease 0.15s both }
+.hero-sub { animation: fadeUp 0.7s ease 0.28s both }
+.hero-actions { animation: fadeUp 0.7s ease 0.38s both }
+.hero-visual { animation: fadeUp 0.9s ease 0.2s both }
 
 @media (max-width: 850px) {
   .hidemobile { display: none }
@@ -239,5 +231,6 @@ footer {
   * {
     --time: 0ms;
     transition: none !important;
+    animation: none !important;
   }
 }
