@@ -10,9 +10,9 @@
     <title>Parley Chat - E2EE Messaging Platform</title>
     <meta property="og:title" content="Parley Chat - E2EE Messaging Platform">
     <meta name="twitter:title" content="Parley Chat - E2EE Messaging Platform">
-    <meta name="description" content="Parley, a secure end to end encrypted messaging web app.">
-    <meta property="og:description" content="Parley, a secure end to end encrypted messaging web app.">
-    <meta name="twitter:description" content="Parley, a secure end to end encrypted messaging web app.">
+    <meta name="description" content="Parley, a secure End-to-End-Encrypted messaging chatting platform.">
+    <meta property="og:description" content="Parley, a secure End-to-End-Encrypted messaging chatting platform.">
+    <meta name="twitter:description" content="Parley, a secure End-to-End-Encrypted messaging chatting platform.">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="512x512" href="./media/parley.png">
     <link rel="apple-touch-icon" sizes="512x512" href="./media/parley.png">
@@ -32,13 +32,13 @@
   </head>
   <body>
     <nav>
-      <a class="nav-logo" href="https://parley-chat.site" aria-label="Parley Chat"><img src="favicon.ico" width="28" height="28" alt="Parley Chat logo"> Parley Chat</a>
+      <a class="nav-logo" href="https://parley-chat.site" aria-label="Parley Chat"><img src="favicon.ico" width="28" height="28" alt="Parley Chat logo"> Parley</span><span class="hidemobile">Chat</span></a>
       <div style="flex:1"></div>
-      <a href="#features">Features</a>
-      <a href="#security">Security</a>
-      <a href="https://docs.parley-chat.site">Documentation</a>
+      <a href="#features" class="hidemobile">Features</a>
+      <a href="https://github.com/Parley-Chat" target="_blank">GitHub</a>
+      <a href="https://docs.parley-chat.site" target="_blank">Documentation</a>
       <div style="flex:1"></div>
-      <a class="nav-cta" href="https://parley-chat.site">Open App</a>
+      <a class="nav-cta" href="https://app.parley-chat.site">Open App</a>
     </nav>
     <main>
       <section class="hero">
@@ -52,127 +52,47 @@
         </div>
         <img src="./media/screenshot.png" alt="Parley Chat app interface, shows an example chat between two users." class="hero-visual">
       </section>
-      <section class="features" id="features">
-        <div class="section-header">
-          <p class="section-eyebrow">Features</p>
-          <h2 class="section-title">Everything you need to communicate privately</h2>
-        </div>
+      <section id="features">
+        <h2>All you need to communicate privately</h2>
         <div class="features-grid" role="list">
-          <article class="feat-card" role="listitem">
-            <div class="feat-icon" aria-hidden="true">🔒</div>
-            <h3 class="feat-title">End-to-End Encryption</h3>
-            <p class="feat-desc">Hybrid E2EE: RSA-OAEP key exchange and AES-GCM-128 message encryption. Messages signed
-              with RSA-PSS. Ephemeral keys expire hourly — forward secrecy built in.</p>
+          <article role="listitem">
+            <h3>End-to-End Encryption</h3>
+            <p>All messages are encrypted and signed client-side, the server never sees the messages. <a href="https://docs.parley-chat.site/protocol/" target="_blank">Info on the protocol here.</a></p>
           </article>
-          <article class="feat-card" role="listitem">
-            <div class="feat-icon" aria-hidden="true">📹</div>
-            <h3 class="feat-title">Peer-to-Peer Video Calls</h3>
-            <p class="feat-desc">WebRTC calls that flow directly between users. No relay server intercepts audio or video.
-              Full mic and camera control with fullscreen support.</p>
+          <article role="listitem">
+            <h3>Decentralized</h3>
+            <p>Use any Parley client running anywhere to connect to any Parley server.</p>
           </article>
-          <article class="feat-card" role="listitem">
-            <div class="feat-icon" aria-hidden="true">🌐</div>
-            <h3 class="feat-title">Multi-Server Support</h3>
-            <p class="feat-desc">Connect to any Parley-compatible server or self-host your own. Switch between servers
-              without losing your encryption keys. Truly decentralized.</p>
+          <article role="listitem">
+            <h3>Channels</h3>
+            <p>Direct messages between users and Group/Broadcasts chats with permissions and invites all supported.</p>
           </article>
-          <article class="feat-card" role="listitem">
-            <div class="feat-icon" aria-hidden="true">👥</div>
-            <h3 class="feat-title">Group &amp; Broadcast Channels</h3>
-            <p class="feat-desc">Encrypted group and broadcast channels with a full permission system: owner, admin, send,
-              manage. Invite codes for controlled access.</p>
+          <article role="listitem">
+            <h3>Voice Messages &amp; Files</h3>
+            <p>Send and receive voice messages and files. All media handled in one integrated interface.</p>
           </article>
-          <article class="feat-card" role="listitem">
-            <div class="feat-icon" aria-hidden="true">🎙️</div>
-            <h3 class="feat-title">Voice Messages &amp; Files</h3>
-            <p class="feat-desc">Record and send encrypted voice messages. Share files directly in your conversations. All
-              media handled in one integrated interface.</p>
+          <article role="listitem">
+            <h3>Peer-to-Peer Video Calls</h3>
+            <p>Using WebRTC, calls flow directly between users. The server never sees the call's contents. Full microphone and camera support.</p>
           </article>
-          <article class="feat-card" role="listitem">
-            <div class="feat-icon" aria-hidden="true">📱</div>
-            <h3 class="feat-title">Installable PWA</h3>
-            <p class="feat-desc">Progressive Web App. Installs on any device, no app store required. Multilingual with RTL
-              support. MIT licensed and free forever.</p>
+          <article role="listitem">
+            <h3>Installable Progressive Web App</h3>
+            <p>Install natively on any device easily, no app store required.</p>
+          </article>
+          <article role="listitem">
+            <h3>Multilingual</h3>
+            <p>Built-in support for several languages including Right-to-Left text.</p>
+          </article>
+          <article role="listitem">
+            <h3>Free Forever ❤️</h3>
+            <p>Open source, MIT licensed and free forever. <a href="https://github.com/Parley-Chat" target="_blank">Our GitHub organization</a></p>
           </article>
         </div>
       </section>
-      <section class="security" id="security">
-        <div>
-          <p class="sec-eyebrow">Security Model</p>
-          <h2 class="sec-headline">The server sees<br><span class="hl">ciphertext only.</span></h2>
-          <ul class="sec-list">
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              RSA-OAEP key exchange — private key never transmitted
-            </li>
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              AES-GCM-128 message encryption — server stores only ciphertext
-            </li>
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              RSA-PSS message signing — tampering is cryptographically detectable
-            </li>
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              Hourly key rotation — forward secrecy limits breach impact
-            </li>
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              Encrypted key file backup for account recovery
-            </li>
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              Session management — revoke device access at any time
-            </li>
-            <li>
-              <span class="sec-list-icon" aria-hidden="true"></span>
-              MIT licensed — read and audit every line of code
-            </li>
-          </ul>
-        </div>
-        <div class="sec-content">
-          <p>Parley Chat uses hybrid encryption: RSA-OAEP exchanges an ephemeral AES-GCM shared key per channel. Messages
-            are encrypted with that key and signed with RSA-PSS before leaving your device. The server receives and stores
-            only ciphertext.</p>
-          <p>Shared keys expire every hour. Even if a key is compromised, only one hour of messages is exposed — forward
-            secrecy limits the impact of any breach to a short window.</p>
-          <div class="sec-detail-box" aria-label="Encryption specifications">
-            <div class="sec-detail-row">
-              <span class="sec-detail-k">Message cipher</span>
-              <span class="sec-detail-v">AES-GCM-128</span>
-            </div>
-            <div class="sec-detail-row">
-              <span class="sec-detail-k">Key exchange</span>
-              <span class="sec-detail-v">RSA-OAEP</span>
-            </div>
-            <div class="sec-detail-row">
-              <span class="sec-detail-k">Message signing</span>
-              <span class="sec-detail-v">RSA-PSS</span>
-            </div>
-            <div class="sec-detail-row">
-              <span class="sec-detail-k">Key modulus</span>
-              <span class="sec-detail-v">2048-bit</span>
-            </div>
-            <div class="sec-detail-row">
-              <span class="sec-detail-k">Key lifetime</span>
-              <span class="sec-detail-v">1 hour</span>
-            </div>
-            <div class="sec-detail-row">
-              <span class="sec-detail-k">Forward secrecy</span>
-              <span class="sec-detail-v">Yes</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="cta-section" aria-label="Get started">
-        <div class="cta-inner">
-          <h2 class="cta-headline">Start chatting<br><span class="hl">privately.</span></h2>
-          <div class="cta-right">
-            <p class="cta-sub">No phone number required. No ads. No tracking. No data harvesting. Free forever.</p>
-            <a class="btn-primary" href="https://parley-chat.site">Open Parley Chat →</a>
-          </div>
-        </div>
+      <section style="text-align:center">
+        <h2>Start chatting privately.</h2>
+        <p class="cta-sub">No phone number, No ads, No tracking and Free forever.</p>
+        <a class="btn-primary" href="https://app.parley-chat.site">Start Chatting →</a>
       </section>
     </main>
     <footer>© 2026 Parley Chat</footer>
