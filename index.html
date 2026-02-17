@@ -32,37 +32,27 @@
   </head>
   <body>
     <nav>
-      <a class="nav-logo" href="https://parley-chat.site">
-        <img src="favicon.ico" width="28" height="28" alt="Parley Chat logo">
-        Parley Chat
-      </a>
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#security">Security</a></li>
-        <li><a href="https://docs.parley-chat.site">Documentation</a></li>
-      </ul>
+      <a class="nav-logo" href="https://parley-chat.site" aria-label="Parley Chat"><img src="favicon.ico" width="28" height="28" alt="Parley Chat logo"> Parley Chat</a>
+      <div style="flex:1"></div>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="https://docs.parley-chat.site">Documentation</a>
+      <div style="flex:1"></div>
       <a class="nav-cta" href="https://parley-chat.site">Open App</a>
     </nav>
     <main>
-      <section class="hero" aria-label="Hero section">
+      <section class="hero">
         <div class="hero-text">
-          <div class="hero-badge">
-            <span class="hero-badge-dot" aria-hidden="true"></span>
-            End-to-End Encrypted
-          </div>
           <h1 class="hero-headline">Private messaging<br>done <span class="hl">right.</span></h1>
-          <p class="hero-sub">Hybrid AES-GCM + RSA-OAEP encryption with forward secrecy. Peer-to-peer video calls. Group
-            channels. Multi-server support. Free forever.</p>
+          <p class="hero-sub">Decentralized, fully End to End Encrypted and private chatting platform. With DMs, Groups, P2P Calls and<br><strong>Free forever.</strong></p>
           <div class="hero-actions">
-            <a class="btn-primary" href="https://parley-chat.site">Start Chatting →</a>
+            <a class="btn-primary" href="https://app.parley-chat.site">Start Chatting →</a>
             <a class="btn-secondary" href="#features">See Features</a>
           </div>
         </div>
-        <div class="hero-visual">
-          <img src="./media/screenshot.png" alt="Parley Chat app interface showing encrypted messaging">
-        </div>
+        <img src="./media/screenshot.png" alt="Parley Chat app interface, shows an example chat between two users." class="hero-visual">
       </section>
-      <section class="features" id="features" aria-label="Features">
+      <section class="features" id="features">
         <div class="section-header">
           <p class="section-eyebrow">Features</p>
           <h2 class="section-title">Everything you need to communicate privately</h2>
@@ -106,7 +96,7 @@
           </article>
         </div>
       </section>
-      <section class="security" id="security" aria-label="Security">
+      <section class="security" id="security">
         <div>
           <p class="sec-eyebrow">Security Model</p>
           <h2 class="sec-headline">The server sees<br><span class="hl">ciphertext only.</span></h2>
