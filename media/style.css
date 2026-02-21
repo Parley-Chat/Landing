@@ -50,6 +50,7 @@ a:hover {
 iframe {
   width: 50%;
   min-width: min(500px, 90dvw);
+  max-width: 650px;
   border: none;
   border-radius: var(--roundness-1);
   aspect-ratio: 16 / 9;
